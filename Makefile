@@ -21,10 +21,6 @@ node_modules: package.json package-lock.json
 src/Generated/ExampleApi.elm: src/example-api.json lib/generate-elm-module.js bin/elm-ffi.js
 	bin/elm-ffi.js $<
 
-.PHONY: test
-test:
-	@elm-test
-
 .PHONY: watch
 watch:
 	@find src | entr -c make
