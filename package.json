@@ -7,9 +7,7 @@
   },
   "author": "Michael Hadley",
   "license": "WTFPL",
-  "dependencies": {
-    "terser": "^4.6.11"
-  },
+  "dependencies": {},
   "devDependencies": {
     "http-server": "^0.12.1",
     "prettier": "^2.0.5",
