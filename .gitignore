@@ -1,0 +1,5 @@
+dist
+elm-stuff
+result
+node_modules
+src/Generated/*

@@ -1,0 +1,20 @@
+{
+    "moduleName": "Generated.ExampleApi",
+    "outputDir": "src",
+    "functions": {
+        "randomNumber": {
+            "parameters": [],
+            "returns": "float"
+        },
+
+        "formatCurrency": {
+            "parameters": ["int"],
+            "returns": "string"
+        },
+
+        "formatRelativeTime": {
+            "parameters": ["int", "string"],
+            "returns": "string"
+        }
+    }
+}

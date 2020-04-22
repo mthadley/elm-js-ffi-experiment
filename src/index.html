@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MyApp</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script src="index.js"></script>
+    <script
+      id="example-api"
+      src="example-api.json"
+      type="application/json"
+    ></script>
+
+    <script type="module">
+      import * as ElmFFI from "/elm-ffi-browser.js";
+
+      fetch("/example-api.json")
+        .then(resp => resp.json())
+        .then(apiSpec => {
+          const exampleApi = ElmFFI.createImplementation(apiSpec, {
+            randomNumber() {
+              return Math.random();
+            },
+
+            formatCurrency(number) {
+              return new Intl.NumberFormat("de-DE", {
+                style: "currency",
+                currency: "EUR"
+              }).format(number);
+            },
+
+            formatRelativeTime(value, unit) {
+              const rtf = new Intl.RelativeTimeFormat("en", {
+                numeric: "auto"
+              });
+
+              return rtf.format(value, unit);
+            }
+          });
+
+          Elm.Main.init({
+            node: document.getElementById("app"),
+            flags: {
+              exampleApi
+            }
+          });
+        });
+    </script>
+  </body>
+</html>
