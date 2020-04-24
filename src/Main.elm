@@ -64,6 +64,7 @@ view model =
                     ([ ( "English", "en" )
                      , ( "French", "fr" )
                      , ( "Japanese", "ja" )
+                     , ( "Simplified Chinese", "zh-cn" )
                      ]
                         |> List.map
                             (\( label, value ) ->
@@ -88,16 +89,14 @@ view model =
                                 [ td [] [ text "Intl.NumberFormat" ]
                                 , td []
                                     [ ExampleApi.formatCurrency api model.locale 4000
-                                        |> Result.withDefault ""
-                                        |> text
+                                        |> viewFfiResult
                                     ]
                                 ]
                             , tr []
                                 [ td [] [ text "Intl.formatRelativeTime" ]
                                 , td []
                                     [ ExampleApi.formatRelativeTime api model.locale 5 "days"
-                                        |> Result.withDefault ""
-                                        |> text
+                                        |> viewFfiResult
                                     ]
                                 ]
                             ]
@@ -107,6 +106,20 @@ view model =
                     text <| "Failed to initialize foreign api: " ++ Decode.errorToString err
             ]
         ]
+
+
+viewFfiResult : Result ElmFfi.Error String -> Html a
+viewFfiResult result =
+    text <|
+        case result of
+            Ok value ->
+                value
+
+            Err (ElmFfi.JsonDecodeError error) ->
+                Decode.errorToString error
+
+            Err (ElmFfi.FunctionCallError error) ->
+                error
 
 
 
