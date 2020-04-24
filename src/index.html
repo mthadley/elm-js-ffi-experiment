@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MyApp</title>
+    <title>elm-ffi</title>
   </head>
   <body>
     <div id="app"></div>
@@ -26,15 +26,15 @@
               return Math.random();
             },
 
-            formatCurrency(number) {
-              return new Intl.NumberFormat("de-DE", {
+            formatCurrency(locale, number) {
+              return new Intl.NumberFormat(locale, {
                 style: "currency",
                 currency: "EUR"
               }).format(number);
             },
 
-            formatRelativeTime(value, unit) {
-              const rtf = new Intl.RelativeTimeFormat("en", {
+            formatRelativeTime(locale, value, unit) {
+              const rtf = new Intl.RelativeTimeFormat(locale, {
                 numeric: "auto"
               });
 

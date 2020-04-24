@@ -8,12 +8,12 @@
         },
 
         "formatCurrency": {
-            "parameters": ["int"],
+            "parameters": ["string", "int"],
             "returns": "string"
         },
 
         "formatRelativeTime": {
-            "parameters": ["int", "string"],
+            "parameters": ["string", "int", "string"],
             "returns": "string"
         }
     }
