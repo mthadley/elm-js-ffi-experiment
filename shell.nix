@@ -7,10 +7,11 @@ let
 in
 pkgs.mkShell {
   buildInputs = with pkgs; [
-    entr
-    gnumake
-    nodejs
     elmPackages.elm
     elmPackages.elm-format
+    entr
+    gnumake
+    jq
+    nodejs
   ];
 }
